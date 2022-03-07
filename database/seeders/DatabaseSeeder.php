@@ -30,10 +30,14 @@ class DatabaseSeeder extends Seeder
 
                 //echo ($home);
                 $red->homes()->saveMany($home);
+
+                $home->each(function ($home) {
+                    $member = \App\Models\Member::factory(5)->make();
+    
+                    $home->members()->saveMany($member);
+    
+                });
             });
-           
-            
-           
         });
         
         /*

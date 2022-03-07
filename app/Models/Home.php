@@ -11,8 +11,13 @@ class Home extends Model
 
 
 
-    public function Net()
+    public function net()
     {
         return $this->belongsTo(Net::class);
+    }
+
+    public function members()
+    {
+        return $this->hasMany(Member::class);
     }
 }

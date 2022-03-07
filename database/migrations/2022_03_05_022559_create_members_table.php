@@ -15,13 +15,13 @@ return new class extends Migration
     {
         Schema::create('members', function (Blueprint $table) {
             $table->id();
-            $table->integer('cedula')->unique('cedula');
+            $table->unsignedBigInteger('cedula')->unique('cedula');
             $table->string('nombres');
             $table->string('apellidos');
-            $table->string('sexo');
+            $table->string('sexo')->nullable()->default(null);
             $table->date('fecha_nac')->nullable();
             $table->integer('edad');
-            $table->string('estado_civil');
+            $table->string('estado_civil')->nullable()->default(null);
             $table->string('direccion');
             $table->string('profesion');
             $table->string('nacionalidad');
@@ -36,17 +36,20 @@ return new class extends Migration
             $table->string('responsable_discipulado')->nullable()->default(null);
             $table->string('area_servicio_pasado')->nullable()->default(null);
             $table->string('area_servicio_actual')->nullable()->default(null);
-            $table->unsignedBigInteger('sede_id');
-            $table->string('sede');
-            $table->unsignedBigInteger('red_id');
-            $table->string('red');
-            $table->unsignedBigInteger('hvn_id');
-            $table->string('hvn');
-            $table->string('ocupacion');
-            $table->string('status');
-            $table->boolean('clase_discipulado')->default(0);
-            $table->boolean('discipulado_aprobado')->default(0);
-            $table->boolean('bautizado');
+            $table->unsignedBigInteger('sede_id')->nullable()->default(null);
+            $table->string('sede')->nullable()->default(null);
+            $table->unsignedBigInteger('red_id')->nullable()->default(null);
+            $table->string('red')->nullable()->default(null);
+            $table->unsignedBigInteger('home_id');
+            $table->string('hvn')->nullable()->default(null);
+            $table->string('ocupacion')->nullable()->default(null);
+            $table->string('status')->nullable()->default(null);
+            $table->boolean('clase_discipulado')->default(0)->nullable()->default(null);
+            $table->boolean('discipulado_aprobado')->default(0)->nullable()->default(null);
+            $table->boolean('bautizado')->nullable()->default(null);
+
+
+            $table->foreign('home_id', 'miembro_de_hvnId')->references('id')->on('homes');
 
             $table->timestamps();
         });

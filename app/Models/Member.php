@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Member extends Model
 {
     use HasFactory;
+
+    public function home()
+    {
+        return $this->belongsTo(Home::class);
+    }
 }
