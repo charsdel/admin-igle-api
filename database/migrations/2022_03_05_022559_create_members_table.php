@@ -53,6 +53,11 @@ return new class extends Migration
 
             $table->timestamps();
         });
+
+        DB::statement('
+            create fulltext index chapters_name_lastn_fulltext
+            on members(nombres, apellidos);
+        ');
     }
 
     /**

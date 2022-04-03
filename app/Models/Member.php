@@ -9,6 +9,9 @@ class Member extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['nombres', 'apellidos'];
+
+
     public function home()
     {
         return $this->belongsTo(Home::class);
