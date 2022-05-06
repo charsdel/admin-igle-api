@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('nets', function (Blueprint $table) {
             $table->id();
+            $table->string('red')->default(0);
             $table->string('codigo_red');
             $table->string('zona_geografica');
             $table->unsignedBigInteger('sede_id');

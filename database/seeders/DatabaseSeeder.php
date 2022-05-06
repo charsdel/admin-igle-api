@@ -14,10 +14,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-         //\App\Models\User::factory(10)->create();
-       // \App\Models\Sede::factory(5)->create();
-        //\App\Models\Net::factory(5)->create();
-        //\App\Models\Homes::factory(5)->create();
+       
+
+        //este es el que uso para llenar las tablas
+        /*
+        \App\Models\User::factory(10)->create();
 
         
         \App\Models\Sede::factory(5)->create()->each(function ($sede) {
@@ -38,25 +39,14 @@ class DatabaseSeeder extends Seeder
     
                 });
             });
-        });
-        
-        /*
-        \App\Models\Net::factory(5)->create()->each(function ($net) {
-            $net->homes()->saveMany(\App\Models\Home::factory(2)->make());
-           
         });*/
 
-    
+        //\App\Models\Member::factory(100)->make();
 
-       // \App\Models\Sede::factory()->hasHomes(3)->create();
-        /*
-        \App\Models\Sede::factory(5)
-            ->has(\App\Models\Net::factory()->count(3))
-            ->create();
-        \App\Models\Home::factory(5)->create();
-         */   
-      
-        #\App\Models\Net::factory(5)->create();
+        // \App\Models\Sede::factory(5)->create();
+        //\App\Models\Net::factory(5)->create();
+        //\App\Models\Homes::factory(5)->create();
+        
 
     }
 }

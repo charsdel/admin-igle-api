@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('homes', function (Blueprint $table) {
             $table->id();
+            $table->string('hogar')->default(0);
+            $table->string('codigo_hogar')->default(0);
             $table->unsignedBigInteger('sede_id')->nullable();
             $table->string('sede')->nullable();
             $table->unsignedBigInteger('net_id');
