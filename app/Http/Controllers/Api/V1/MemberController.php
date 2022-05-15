@@ -58,6 +58,54 @@ class MemberController extends Controller
     public function store(Request $request)
     {
         
+        
+        $input = $request->all();
+
+    
+        $member = new Member;
+        $member->cedula = $input['cedula'] ;
+
+        $member->nombres = $input['nombres'];
+        
+        
+        $member->profesion = $input['profesion'];
+        $member->status = $input['status'];
+
+
+
+        $member->direccion = $input['direccion'];
+        $member->correo = $input['correo'];
+        $member->foto = $input['foto'];
+
+        $member->telefono = $input['telefono'];
+        $member->edad = $input['edad'];
+        $member->nacionalidad = $input['nacionalidad'];
+        $member->estado_civil = $input['estado_civil'];
+        $member->sexo = $input['sexo'];
+        $member->fecha_nac = $input['fecha_nac'];
+        $member->sede_id = $input['sede_id'];
+        $member->red_id = $input['red_id'];
+        $member->home_id = $input['home_id'];
+        $member->ocupacion = $input['ocupacion'];
+        $member->fecha_nac_esp = $input['fecha_nac_esp'];
+        $member->iglesia_creyo = $input['iglesia_creyo'];
+        $member->bautizado = $input['bautizado'];
+        //uso de carbon para convertir la fecha del formato  m/d/Y que envial el front a Y-m-d aceptado por la bd
+        $member->fecha_bautizo = $input['fecha_bautizo'];
+        $member->iglesia_bautizo_agua = $input['iglesia_bautizo_agua'];
+
+        $member->discipulado_aprobado = $input['discipulado_aprobado'];
+        $member->fecha_aprob_discipulado = $input['fecha_aprob_discipulado'];
+        $member->responsable_discipulado = $input['responsable_discipulado'];
+
+        $member->area_servicio_pasado = $input['area_servicio_pasado'];
+        $member->area_servicio_actual = $input['area_servicio_actual'];
+
+
+        $resul  = $member->save();
+
+        //return response()->json($resul, 200);
+        return response()->json($resul, 200);
     }
 
     /**
@@ -121,9 +169,9 @@ class MemberController extends Controller
         $member->estado_civil = $input['estado_civil'];
         $member->sexo = $input['sexo'];
         $member->fecha_nac = $input['fecha_nac'];
-        $member->sede = $input['sede'];
-        $member->red = $input['red'];
-        $member->hvn = $input['hvn'];
+        $member->sede_id = $input['sede_id'];
+        $member->red_id = $input['red_id'];
+        $member->home_id = $input['home_id'];
         $member->ocupacion = $input['ocupacion'];
         $member->fecha_nac_esp = $input['fecha_nac_esp'];
         $member->iglesia_creyo = $input['iglesia_creyo'];
@@ -142,7 +190,7 @@ class MemberController extends Controller
 
         $member->save();
 
-        return response()->json($member, 200);
+        return response()->json('ok', 200);
 
     }
 
@@ -156,7 +204,7 @@ class MemberController extends Controller
     {
         $member->delete();
 
-        return response()->json(null, 204);
+        return response()->json('ok', 204);
     }
 
 
@@ -179,8 +227,7 @@ class MemberController extends Controller
        
         $miembros = $members->count();
         $stats1 = $members->where('created_at', '<', now()->subDays(30))->count();
-        $stats2 = $members->where('created_at', '>=', now()->subDays(30))->first()
-        ->count();
+        $stats2 = $members->where('created_at', '>=', now()->subDays(30))->count();
 
         if($stats1 !=0 and $stats2 !=0)
         {
@@ -211,7 +258,7 @@ $total = ($stats->new_users - $stats->last_30) / $stats->last_30;*/
 
         $array = [
 
-            'miembros' => $stats2,
+            'miembros' => $miembros,
             'porcentaje' => ceil($total),
             'hombres' => $hombres,
             'mujeres' => $mujeres,
