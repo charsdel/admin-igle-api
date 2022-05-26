@@ -20,7 +20,6 @@ Route::middleware('auth:sanctum')->group( function () {
     Route::get('/v1/members/search/{search}','App\Http\Controllers\Api\V1\MemberController@search');
 
     Route::get('/v1/schemedrops','App\Http\Controllers\Api\V1\MemberController@getSedesNetsHomes');
-    Route::get('/v1/hb','App\Http\Controllers\Api\V1\MemberController@birthdayBoys');
 
 
 
@@ -29,6 +28,7 @@ Route::middleware('auth:sanctum')->group( function () {
 });
 
 Route::get('/v1/statictis','App\Http\Controllers\Api\V1\MemberController@statictis');
+Route::get('/v1/hb','App\Http\Controllers\Api\V1\MemberController@birthdayBoys');
 
 
 Route::post('/v1/saveimage','App\Http\Controllers\Api\V1\MemberController@saveImage');
