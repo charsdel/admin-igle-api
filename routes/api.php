@@ -21,13 +21,14 @@ Route::middleware('auth:sanctum')->group( function () {
 
     Route::get('/v1/schemedrops','App\Http\Controllers\Api\V1\MemberController@getSedesNetsHomes');
     Route::get('/v1/hb','App\Http\Controllers\Api\V1\MemberController@birthdayBoys');
-    Route::get('/v1/statictis','App\Http\Controllers\Api\V1\MemberController@statictis');
 
 
 
     
 
 });
+
+Route::get('/v1/statictis','App\Http\Controllers\Api\V1\MemberController@statictis');
 
 
 Route::post('/v1/saveimage','App\Http\Controllers\Api\V1\MemberController@saveImage');
