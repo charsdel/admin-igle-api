@@ -23,6 +23,9 @@ use Illuminate\Support\Facades\Storage;
 
 use App\Http\Resources\V1\MemberResource;
 
+use Illuminate\Support\Facades\DB;
+
+
 class MemberController extends Controller
 {
     /**
@@ -228,6 +231,11 @@ class MemberController extends Controller
         $miembros = $members->count();
         $stats1 = $members->where('created_at', '<', now()->subDays(30))->count();
         $stats2 = $members->where('created_at', '>=', now()->subDays(30))->count();
+        //$birthdayBoys = $members->whereMonth('fecha_nac', '12')->get();
+
+        $birthdayBoys = DB::table('members')
+                ->whereMonth('fecha_nac', '12')
+                ->get();
 
         if($stats1 !=0 and $stats2 !=0)
         {
@@ -263,11 +271,37 @@ $total = ($stats->new_users - $stats->last_30) / $stats->last_30;*/
             'hombres' => $hombres,
             'mujeres' => $mujeres,
             'activos' => $activos,  
-            'inactivos' => $inactivos  
+            'inactivos' => $inactivos,
+            'cumpleañeros' => $birthdayBoys 
+  
 
         ];  
        
         return response()->json($array, 200);
+
+        //return $dataResouce;
+    }
+
+
+    public function birthdayBoys()
+    {
+      
+
+       
+
+        $birthdayBoys = DB::table('members')
+                ->whereMonth('fecha_nac', '12')
+                ->get();
+
+        
+
+
+
+    
+
+          
+       
+        return response()->json($birthdayBoys, 200);
 
         //return $dataResouce;
     }

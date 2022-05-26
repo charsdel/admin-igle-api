@@ -23,13 +23,13 @@ class LoginController extends BaseController
 
         
         $validator = Validator::make($request->all(), [
-            'email' => 'required|email',
+            'username' => 'required',
             'password' => 'required',
             'device_name' => 'required',
         ]);
 
 
-        $user = User::where('email', $request->email)->first();
+        $user = User::where('username', $request->username)->first();
  
         if (! $user || ! Hash::check($request->password, $user->password)) {
 
@@ -46,7 +46,7 @@ class LoginController extends BaseController
             ]);*/
         }else{
             $success['token'] =  $user->createToken('MyApp')->plainTextToken; 
-            $success['name'] =  $user->name;
+            $success['name'] =  $user->username;
    
             return $this->sendResponse($success, 'User login successfully.');
         }
@@ -64,8 +64,9 @@ class LoginController extends BaseController
     {
 
         $validator = Validator::make($request->all(), [
-            'name' => 'required',
+            'username' => 'required',
             'email' => 'required|email',
+            'name' => 'required',
             'password' => 'required',
             'password_confirmation' => 'required|same:password',
         ]);
@@ -75,14 +76,14 @@ class LoginController extends BaseController
         }
 
 
-        $user = User::where('email', $request->email)->first();
+        $user = User::where('username', $request->email)->first();
         if(! $user)
         {
             $input = $request->all();
             $input['password'] = bcrypt($input['password']);
             $user = User::create($input);
             $success['token'] =  $user->createToken('MyApp')->plainTextToken;
-            $success['name'] =  $user->name;
+            $success['name'] =  $user->username;
    
             return $this->sendResponse($success, 'User register successfully.');
         }else{
