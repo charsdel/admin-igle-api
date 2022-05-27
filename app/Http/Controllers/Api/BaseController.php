@@ -31,7 +31,8 @@ class BaseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function sendError($error, $errorMessages = [], $code = 404)
+    //antes el codigo era 404 pero necesito el 200 para ver el array de respesta 
+    public function sendError($error, $errorMessages = [], $code = 200)
     {
     	$response = [
             'success' => false,
