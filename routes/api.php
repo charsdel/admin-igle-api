@@ -4,6 +4,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\V1\MemberController;
 use App\Http\Controllers\Api\LoginController;
+use App\Http\Controllers\Api\NewPasswordController;
+                            
+
 
 
 
@@ -22,7 +25,7 @@ Route::middleware('auth:sanctum')->group( function () {
     Route::get('/v1/schemedrops','App\Http\Controllers\Api\V1\MemberController@getSedesNetsHomes');
 
 
-
+    Route::post('logout', [LoginController::class, 'logout']);
     
 
 });
@@ -40,3 +43,8 @@ Route::get('/uploads', function () {
     abort(404, __('errors.images-root-restricted'));
 });
 
+//contrase#a olvidada
+Route::post('forgot-password','App\Http\Controllers\Api\NewPasswordController@forgotPassword');
+Route::post('reset-password', [NewPasswordController::class, 'reset']);
+
+#Route::post('reset-password', [NewPasswordController::class, 'reset']);

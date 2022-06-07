@@ -94,4 +94,19 @@ class LoginController extends BaseController
    
         
     }
+
+
+    //solo con enviar el token como parametro es suficiente
+    public function logout(Request $request)
+    {
+
+        $request->user()->tokens()->delete();
+
+        return response()->json(
+            [
+                'message' => 'Logged out'
+            ]
+        );
+
+    }
 }
