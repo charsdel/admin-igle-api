@@ -53,9 +53,9 @@ class User extends Authenticatable
     public function sendPasswordResetNotification($token)
     {
 
-        $url = 'http://front:4200/auth/reset-password?token=' . $token;
+        #$url = 'http://front:4200/auth/reset-password?token=' . $token;
 
-        #$url = 'https://igleadmin.com/auth/forgot-password?token=' . $token;
+        $url = 'https://igleadmin.com/auth/reset-password?token=' . $token;
 
         $this->notify(new ResetPasswordNotification($url));
     }
