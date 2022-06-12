@@ -44,9 +44,13 @@ class ResetPasswordNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url($this->url))
-                    ->line('Thank you for using our application!');
+
+                    ->mailer('igleadmin')
+                    ->greeting('Hola')
+                    ->line('Pulse aquí para continuar con el proceso  ')
+                    ->action('Reiniciar', url($this->url))
+                    ->line('Gracias por usar nuestros Servicios!')
+                    ->salutation('Saludos');
     }
 
     /**
