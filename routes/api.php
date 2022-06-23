@@ -6,6 +6,11 @@ use App\Http\Controllers\Api\V1\MemberController;
 use App\Http\Controllers\Api\LoginController;
 use App\Http\Controllers\Api\NewPasswordController;
                             
+use App\Http\Controllers\Api\V1\ForgotPasswordController;
+use App\Http\Controllers\Api\V1\CodeCheckController;
+use App\Http\Controllers\Api\V1\ResetPasswordController;
+
+
 
 
 
@@ -43,8 +48,13 @@ Route::get('/uploads', function () {
     abort(404, __('errors.images-root-restricted'));
 });
 
-//contrase#a olvidada
+//rutas de contrase#a olvidada web
 Route::post('forgot-password','App\Http\Controllers\Api\NewPasswordController@forgotPassword');
 Route::post('reset-password', [NewPasswordController::class, 'reset']);
 
 #Route::post('reset-password', [NewPasswordController::class, 'reset']);
+
+//rutas de contrase#a olvidada app
+Route::post('password/email', 'App\Http\Controllers\Api\ForgotPasswordController');
+Route::post('password/code/check','App\Http\Controllers\Api\CodeCheckController');
+Route::post('password/reset', 'App\Http\Controllers\Api\ResetPasswordController');
